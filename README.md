@@ -12,6 +12,17 @@
 - Databinding and view model for MVVM
 - Picaso for image Loading
 - Junit and mockito for Unit testing
+- DIffUtils to make recyclerview load items faster
+
+
+## How to Tun the application
+- Click on the CountryFlagAPp in device dashboard
+- Type country code to search any country
+- Minimum length of country code is 2
+- If the country code is not exist, user will see an error dialog, the save button will be disabled
+- WHen User click on ok of the alert dialog, the search text will be empty
+- On Each save, the recycleview will be updated with the new data
+- Added filted features to search the Coutries whicha re saved
 
 
 ## Here is the screen shot and Gif image for the application

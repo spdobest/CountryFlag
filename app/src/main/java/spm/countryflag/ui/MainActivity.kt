@@ -52,10 +52,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 adapter.filter.filter(s)
-                if (etCountryCode.text?.length == 2) {
+                val lentgh = etCountryCode.text?.length ?: 0
+                if (lentgh >= 2) {
                     loadImage(countryCode = etCountryCode.text.toString())
                 }
-                if (etCountryCode.text?.length!! < 2) {
+                if (lentgh < 2) {
                     imageViewFlag.setImageDrawable(null)
                     setButtonState(false)
                 }
@@ -113,7 +114,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         alertDialog.setMessage(message)
         alertDialog.setButton(
             AlertDialog.BUTTON_NEUTRAL, "OK"
-        ) { dialog, _ -> dialog.dismiss() }
+        ) { dialog, _ ->
+            if (message.contains("404")) {
+                etCountryCode.setText(getString(R.string.empty_string))
+            }
+            dialog.dismiss()
+        }
         alertDialog.show()
     }
 
@@ -136,8 +142,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Status.SUCCESS -> {
                     progressLoadCountries.visibility = View.GONE
                     it.data?.let { countries ->
-                        listOfSavedCountries.clear()
-                        listOfSavedCountries.addAll(countries)
+                        adapter.setCountries(countries)
                     }
                     recyclerViewCountry.visibility = View.VISIBLE
                 }

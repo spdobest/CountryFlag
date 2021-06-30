@@ -59,4 +59,4 @@
 </table> 
 
 ## GIF image
-<img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/gifImage.gif" width="300" height="500" />
+<img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/gifImage.gif" width="250" height="500" />

@@ -1,5 +1,5 @@
 # CountryFlag Application
-
+## [Download APK](https://github.com/spdobest/CountryFlag/blob/main/app/apk/COuntryFlagApp.apk)
 ## Assignment details
 - Generate a Single Activity App named CountryFlags
 - The project will be to simply to show flag images when searching using ISO 3166-1 alpha-2 (2 letter) codes, e.g. IE for Ireland or CN for China
@@ -27,7 +27,7 @@
 
 
 ## How to Run the application
-- 
+- Download the APK link given above or download the project and open in Android Studio and Sync and click on run on any Emulator or Device
 - Click on the CountryFlagAPp in device dashboard
 - Type country code to search any country
 - Minimum length of country code is 2

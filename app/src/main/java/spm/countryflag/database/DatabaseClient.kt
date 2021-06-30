@@ -3,6 +3,12 @@ package spm.countryflag.database
 import android.content.Context
 import androidx.room.Room
 
+
+/**
+ * Created by Sibaprasad Mohanty on 29/06/21.
+ * sp.dobest@gmail.com
+ */
+
 class DatabaseClient(context: Context) {
 
     private var appDatabase: AppDatabase =
@@ -25,5 +31,4 @@ class DatabaseClient(context: Context) {
     }
 
     fun getAppDatabase() = appDatabase
-
 }

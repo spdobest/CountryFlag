@@ -6,6 +6,11 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 
+/**
+ * Created by Sibaprasad Mohanty on 29/06/21.
+ * sp.dobest@gmail.com
+ */
+
 @Entity(indices = [Index(value = ["countryCode", "countryImage"], unique = true)])
 data class Country(
     @PrimaryKey(autoGenerate = true) val id: Int,

@@ -7,7 +7,6 @@ import spm.countryflag.Country
 
 /**
  * Created by Sibaprasad Mohanty on 29/06/21.
- * Spm Limited
  * sp.dobest@gmail.com
  */
 

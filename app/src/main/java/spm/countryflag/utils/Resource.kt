@@ -1,5 +1,10 @@
 package spm.countryflag.utils
 
+/**
+ * Created by Sibaprasad Mohanty on 29/06/21.
+ * sp.dobest@gmail.com
+ */
+
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
 
     companion object {

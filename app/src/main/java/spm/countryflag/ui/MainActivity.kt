@@ -22,18 +22,22 @@ import spm.countryflag.utils.NetworkUtil
 import spm.countryflag.utils.Status
 import spm.countryflag.viewModel.MainViewModel
 
+/**
+ * Created by Sibaprasad Mohanty on 29/06/21.
+ * sp.dobest@gmail.com
+ */
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    private val viewmodel: MainViewModel by lazy {
+    private var listOfSavedCountries = ArrayList<Country>()
+
+    private val mainViewModel: MainViewModel by lazy {
         MainViewModel(this)
     }
 
-    private var listOfSavedCountries = ArrayList<Country>()
     val adapter: CountryAdapter by lazy {
         CountryAdapter(listOfSavedCountries)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,28 +45,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        buttonSave.setOnClickListener(this)
-
         binding.countryAdapter = adapter
+        initializeLayout()
         setObserver()
-
-        etCountryCode.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                adapter.filter.filter(s)
-                val lentgh = etCountryCode.text?.length ?: 0
-                if (lentgh >= 2) {
-                    loadImage(countryCode = etCountryCode.text.toString())
-                }
-                if (lentgh < 2) {
-                    imageViewFlag.setImageDrawable(null)
-                    setButtonState(false)
-                }
-            }
-        })
-
     }
 
     private fun loadImage(countryCode: String, save: Boolean = false) {
@@ -101,7 +86,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     fun insertCountry(country: Country) {
         CoroutineScope(Dispatchers.IO).launch {
-            viewmodel.insertCountry(
+            mainViewModel.insertCountry(
                 country
             )
         }
@@ -135,9 +120,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setObserver() {
 
-        viewmodel.getSavedCountries()
+        mainViewModel.getSavedCountries()
 
-        viewmodel.observSavedCountries().observe(this, {
+        mainViewModel.observSavedCountries().observe(this, {
             when (it.status) {
                 Status.SUCCESS -> {
                     progressLoadCountries.visibility = View.GONE
@@ -164,6 +149,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.drawable.rounded_button
         ) else ContextCompat.getDrawable(this, R.drawable.rounded_button_disable)
         buttonSave.isClickable = isActive
+    }
+
+    private fun initializeLayout() {
+
+        buttonSave.setOnClickListener(this)
+
+        etCountryCode.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                adapter.filter.filter(s)
+                val lentgh = etCountryCode.text?.length ?: 0
+                if (lentgh >= 2) {
+                    loadImage(countryCode = etCountryCode.text.toString())
+                }
+                if (lentgh < 2) {
+                    imageViewFlag.setImageDrawable(null)
+                    setButtonState(false)
+                }
+            }
+        })
     }
 
 }

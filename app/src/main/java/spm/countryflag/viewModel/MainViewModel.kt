@@ -42,7 +42,7 @@ class MainViewModel(context: Context) : ViewModel() {
             savedCountries.postValue(Resource.loading(null))
             try {
                 val countriesFromDb = database.countryDao().getAllSavedCountries()
-                if (isValidCountryList(countriesFromDb) == true) {
+                if (isValidCountryList(countriesFromDb)) {
                     savedCountries.postValue(Resource.success(countriesFromDb))
                 } else {
                     savedCountries.postValue(Resource.error("No Data found", emptyList()))
@@ -51,6 +51,10 @@ class MainViewModel(context: Context) : ViewModel() {
                 savedCountries.postValue(Resource.error("Something Went Wrong", null))
             }
         }
+    }
+
+    fun getStateOfCountry(): LiveData<Resource<List<Country>>> {
+        return savedCountries
     }
 
     fun observSavedCountries(): LiveData<Resource<List<Country>>> {
@@ -63,7 +67,7 @@ class MainViewModel(context: Context) : ViewModel() {
                 && (countryCode.matches("^[a-zA-Z]*$".toRegex())))
     }
 
-    fun isValidCountryList(listCountry: List<Country>?) =
+    fun isValidCountryList(listCountry: List<Country>) =
         listCountry?.isNotEmpty()
 
 }

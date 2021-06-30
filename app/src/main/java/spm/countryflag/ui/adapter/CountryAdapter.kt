@@ -18,10 +18,10 @@ import spm.countryflag.databinding.ItemviewCountryBinding
  * sp.dobest@gmail.com
  */
 
-class CountryAdapter(val listCountries: ArrayList<Country>) :
+class CountryAdapter() :
     RecyclerView.Adapter<CountryAdapter.CountryViewHolder>(), Filterable {
-
-    private var filteredCountries: ArrayList<Country> = listCountries
+    private var allCountryList: List<Country> = listOf<Country>()
+    private var filteredCountries: List<Country> = listOf<Country>()
 
     class CountryViewHolder(private val binding: ItemviewCountryBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -66,7 +66,12 @@ class CountryAdapter(val listCountries: ArrayList<Country>) :
     private val differ: AsyncListDiffer<Country> =
         AsyncListDiffer<Country>(this, COUNTRY_DIFF_CALLBACK)
 
-    fun submitCountryList(countries: List<Country?>) {
+    fun setCountryList(countries: List<Country>) {
+        allCountryList = countries
+        differ.submitList(countries)
+    }
+
+    private fun filterCountryList(countries: List<Country>) {
         differ.submitList(countries)
     }
 
@@ -76,9 +81,9 @@ class CountryAdapter(val listCountries: ArrayList<Country>) :
                 val query = charSequence.toString()
                 var filtered: List<Country> = ArrayList()
                 filtered = if (query.isEmpty()) {
-                    listCountries
+                    allCountryList
                 } else {
-                    listCountries.filter {
+                    allCountryList.filter {
                         it.countryCode.lowercase().contains(query.lowercase())
                     }
                 }
@@ -90,7 +95,7 @@ class CountryAdapter(val listCountries: ArrayList<Country>) :
 
             override fun publishResults(charSequence: CharSequence, results: FilterResults) {
                 filteredCountries = results.values as ArrayList<Country>
-                notifyDataSetChanged()
+                filterCountryList(filteredCountries)
             }
         }
     }

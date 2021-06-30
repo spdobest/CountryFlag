@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     val adapter: CountryAdapter by lazy {
-        CountryAdapter(listOfSavedCountries)
+        CountryAdapter()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Status.SUCCESS -> {
                     progressLoadCountries.visibility = View.GONE
                     it.data?.let { countries ->
-                        adapter.submitCountryList(countries)
+                        adapter.setCountryList(countries)
                     }
                     recyclerViewCountry.visibility = View.VISIBLE
                 }

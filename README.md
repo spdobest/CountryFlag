@@ -1,5 +1,16 @@
-# CountryFlag
-- This is an assignment to show country code with its respective flag
+# CountryFlag Application
+
+## Assignment details
+- Generate a Single Activity App named CountryFlags
+- The project will be to simply to show flag images when searching using ISO 3166-1 alpha-2 (2 letter) codes, e.g. IE for Ireland or CN for China
+- There are 5 simple user requirements for this app:
+  - As a user, I should able to launch the app and enter a 2 letter country code to retrieve the relevant country flag (64px size)
+  - As a user, if I enter an invalid or unavailable country code,  I should get an error dialog
+  - As a user, if I enter a valid country code, I should be able to save the country code into a list of country codes  if the flag preview is available.
+  - As a user, I should be able to see the list of saved country codes with the country flag beside it.
+  - As a user I should be able to search the Saved Country list using country name or country code from the saved list.
+>> You can use https://www.countryflags.io/ for fetching country flags using country code, there are instructions on the site for retrieving any flags there.
+ 
 
 ## Features Implemented
 - MVVM
@@ -10,12 +21,13 @@
 ## Libraries used
 - Coroutines - for multi threading
 - Databinding and view model for MVVM
-- Picaso for image Loading
+- Picaso for image Loading and getting error callback if image not exists
 - Junit and mockito for Unit testing
-- DIffUtils to make recyclerview load items faster
+- DIffUtils to make recyclerview adapter load items effeciently when refresh country
 
 
-## How to Tun the application
+## How to Run the application
+- 
 - Click on the CountryFlagAPp in device dashboard
 - Type country code to search any country
 - Minimum length of country code is 2

@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun showDialog(message: String) {
         val alertDialog: AlertDialog = AlertDialog.Builder(this@MainActivity).create()
         alertDialog.setTitle(getString(R.string.error))
-        alertDialog.setMessage(message)
+        alertDialog.setMessage(if (message.contains("404")) getString(R.string.country_code_not_found) else message)
         alertDialog.setButton(
             AlertDialog.BUTTON_NEUTRAL, "OK"
         ) { dialog, _ ->
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Status.SUCCESS -> {
                     progressLoadCountries.visibility = View.GONE
                     it.data?.let { countries ->
-                        adapter.setCountryList(countries)
+                        adapter.setCountryList(countries as ArrayList<Country>)
                     }
                     recyclerViewCountry.visibility = View.VISIBLE
                 }

@@ -20,8 +20,8 @@ import spm.countryflag.databinding.ItemviewCountryBinding
 
 class CountryAdapter() :
     RecyclerView.Adapter<CountryAdapter.CountryViewHolder>(), Filterable {
-    private var allCountryList: List<Country> = listOf<Country>()
-    private var filteredCountries: List<Country> = listOf<Country>()
+    private var allCountryList: ArrayList<Country> = ArrayList()
+    private var filteredCountries: ArrayList<Country> = ArrayList()
 
     class CountryViewHolder(private val binding: ItemviewCountryBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -66,7 +66,7 @@ class CountryAdapter() :
     private val differ: AsyncListDiffer<Country> =
         AsyncListDiffer<Country>(this, COUNTRY_DIFF_CALLBACK)
 
-    fun setCountryList(countries: List<Country>) {
+    fun setCountryList(countries: ArrayList<Country>) {
         allCountryList = countries
         differ.submitList(countries)
     }

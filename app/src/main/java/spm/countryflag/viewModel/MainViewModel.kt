@@ -48,7 +48,7 @@ class MainViewModel(context: Context) : ViewModel() {
                     savedCountries.postValue(Resource.error("No Data found", emptyList()))
                 }
             } catch (e: Exception) {
-                savedCountries.postValue(Resource.error("Something Went Wrong", null))
+                savedCountries.postValue(Resource.error(e.message.toString(), null))
             }
         }
     }
@@ -68,6 +68,6 @@ class MainViewModel(context: Context) : ViewModel() {
     }
 
     fun isValidCountryList(listCountry: List<Country>) =
-        listCountry?.isNotEmpty()
+        listCountry.isNotEmpty()
 
 }

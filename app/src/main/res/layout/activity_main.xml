@@ -1,0 +1,97 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="countryAdapter"
+            type="spm.countryflag.ui.adapter.CountryAdapter" />
+
+        <variable
+            name="viewModel"
+            type="spm.countryflag.viewModel.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen_10dp"
+        tools:context=".ui.MainActivity">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etCountryCode"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:background="@drawable/rounded_corner"
+            android:hint="@string/search_country_flag"
+            android:paddingStart="@dimen/dimen_10dp"
+            app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_50dp"
+            android:background="@drawable/rounded_button_disable"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/etCountryCode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etCountryCode" />
+
+        <ProgressBar
+            android:id="@+id/progressLoading"
+            android:layout_width="@dimen/dimen_40dp"
+            android:layout_height="@dimen/dimen_40dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/etCountryCode"
+            app:layout_constraintEnd_toEndOf="@+id/etCountryCode"
+            app:layout_constraintTop_toTopOf="@+id/etCountryCode"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewFlag"
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/etCountryCode"
+            app:layout_constraintEnd_toEndOf="@+id/etCountryCode"
+            app:layout_constraintTop_toTopOf="@+id/etCountryCode" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSavedCountryList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/savedCountryList"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/etCountryCode" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCountry"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            app:adapter="@{countryAdapter}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSavedCountryList" />
+
+
+        <ProgressBar
+            android:id="@+id/progressLoadCountries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSavedCountryList"
+            tools:visibility="visible" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

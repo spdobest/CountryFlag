@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CountryFlags</string>
+    <string name="search_country_flag">Search Country Flag</string>
+    <string name="country_code_not_found">Country code not found</string>
+    <string name="save">Save</string>
+    <string name="savedCountryList">Saved country list</string>
+    <string name="no_internet">No Internet connection</string>
+    <string name="error">Error</string>
+
+    <string name="imageUrl">https://www.countryflags.io/%1$s/shiny/64.png</string>
+    <string name="empty_string" />
+</resources>

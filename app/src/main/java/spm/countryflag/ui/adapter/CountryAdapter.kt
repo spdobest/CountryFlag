@@ -4,6 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.annotation.NonNull
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import spm.countryflag.BR
 import spm.countryflag.Country
@@ -16,10 +19,10 @@ import spm.countryflag.databinding.ItemviewCountryBinding
  * sp.dobest@gmail.com
  */
 
-class CountryAdapter(val listCountries: List<Country>) :
+class CountryAdapter(val listCountries: ArrayList<Country>) :
     RecyclerView.Adapter<CountryAdapter.CountryViewHolder>(), Filterable {
 
-    private var filteredCountries: List<Country> = listCountries
+    private var filteredCountries: ArrayList<Country> = listCountries
 
 
     class CountryViewHolder(private val binding: ItemviewCountryBinding) :
@@ -40,22 +43,20 @@ class CountryAdapter(val listCountries: List<Country>) :
         return CountryViewHolder(countryBinding)
     }
 
-
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
-        holder.bind(filteredCountries[position])
+        holder.bind(differ.currentList[position])
     }
 
-    override fun getItemCount() = filteredCountries.size
+    override fun getItemCount() = differ.currentList.size
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(charSequence: CharSequence): FilterResults {
                 val query = charSequence.toString()
                 var filtered: List<Country> = ArrayList()
-                if (query.isEmpty()) {
-                    filtered = listCountries
+                filtered = if (query.isEmpty()) {
+                    listCountries
                 } else {
-
-                    filtered = listCountries.filter {
+                    listCountries.filter {
                         it.countryCode.lowercase().contains(query.lowercase())
                     }
                 }
@@ -72,5 +73,27 @@ class CountryAdapter(val listCountries: List<Country>) :
         }
     }
 
+    private val COUNTRY_DIFF_CALLBACK: DiffUtil.ItemCallback<Country> =
+        object : DiffUtil.ItemCallback<Country>() {
+            override fun areItemsTheSame(
+                @NonNull oldCountry: Country,
+                @NonNull newCountry: Country
+            ): Boolean {
+                return oldCountry.countryCode == newCountry.countryCode
+            }
 
+            override fun areContentsTheSame(
+                @NonNull oldCountry: Country,
+                @NonNull newCountry: Country
+            ): Boolean {
+                return oldCountry.countryImage == newCountry.countryImage
+            }
+        }
+
+    private val differ: AsyncListDiffer<Country> =
+        AsyncListDiffer<Country>(this, COUNTRY_DIFF_CALLBACK)
+
+    fun submitCountryList(countries: List<Country?>) {
+        differ.submitList(countries)
+    }
 }

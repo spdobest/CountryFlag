@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Status.SUCCESS -> {
                     progressLoadCountries.visibility = View.GONE
                     it.data?.let { countries ->
-                        adapter.setCountries(countries)
+                        adapter.submitCountryList(countries)
                     }
                     recyclerViewCountry.visibility = View.VISIBLE
                 }

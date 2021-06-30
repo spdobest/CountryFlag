@@ -41,19 +41,19 @@
 <table>
 <tr>
 <td>
-  <img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/ss1.png" width="200" height="350" />
+  <img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/ss1.png" width="200" height="320" />
  </td>
 <td>
- <img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/ss2.png" width="200" height="350"/> 
+ <img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/ss2.png" width="200" height="320"/> 
 </td>
   <td>
-  <img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/ss3.png" width="200" height="350" />
+  <img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/ss3.png" width="200" height="320" />
  </td>
 <td>
- <img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/ss4.png" width="200" height="350"/> 
+ <img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/ss4.png" width="200" height="320"/> 
 </td>
   <td>
-  <img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/ss5.png" width="200" height="350" />
+  <img src="https://github.com/spdobest/CountryFlag/blob/main/app/images/ss5.png" width="200" height="320" />
  </td>
 </tr>
 </table> 
